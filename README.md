@@ -5,7 +5,6 @@ Web application to help programmers with typing exercises.
 
 The focus of this application is to help programmers improve their typing abilities by practicing on real code examples as well as user submitted examples.
 
-
 Demo
 ====
-http://arthurwut.com/code/4
+http://arthurwut.com/code/
