@@ -1,7 +1,8 @@
 // Create the main buddy which will init the controller
-$(document).ready( function() {
-  buddy = new CodeBuddy( "code" );
-});
+// Global application 
+
+app = angular.module('codeBuddy', []);
+
 
 function blurAll(){
  var tmp = document.createElement("input");
