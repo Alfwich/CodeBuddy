@@ -21,18 +21,38 @@
     <!-- Main Buddy -->
     <script type="text/javascript" src="src/js/main.js"></script>        
 
-    <!-- Angular Controllers -->
+    <!-- Angular Controllers and other goodies-->
     <script type="text/javascript" src="src/js/controllers.js"></script>        
+    <script type="text/javascript" src="src/js/filters.js"></script>        
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="src/css/main.css">
   </head>
   <body>
-    <div ng-app="codeBuddy" ng-controller="main" id="main">
-      <textarea class="code input" ng-model="rawCode" ></textarea>
-      <div class="code container">
-        <textarea class="code text" ng-model="buddy.rawCode" disabled></textarea>
-        <textarea class="code overlay" ng-model="buddy.passedCode" disabled></textarea>
+    <div class="row">
+      <div ng-app="codeBuddy" ng-controller="main" id="main" class="">
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+          <textarea class="code input" ng-model="rawCode" ></textarea>
+          <div class="code container">
+            <textarea class="code text" ng-model="buddy.rawCode" disabled></textarea>
+            <textarea class="code overlay" ng-model="buddy.passedCode" disabled></textarea>
+          </div>
+          <div id="errorMap">
+            <table class="table">
+              <thead>
+                <th> Key Value </th>
+                <th> Errors </th>
+              </thead>
+              <tbody>
+                <tr ng-repeat="k in buddy.errorMap | toArray | orderBy: '-occ'">
+                  <td> {{k.val}} </td>
+                  <td> {{k.occ}} </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </body>

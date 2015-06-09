@@ -1,60 +1,66 @@
-buddy = null;
-// Angular controllers
-app.controller('main', function($scope) {
-
-  $scope.buddy = buddy = new CodeBuddy();
-  $scope.inputUpdateHandle = null;
-  $scope.rawCode = "";
-
-  $scope.codeInputArea = $("textarea.code.input");
-
-  $scope.inputHasFocus = function() { 
-    return document.activeElement == $scope.codeInputArea[0];
+(function() {
+  function testFunction() {
+    if( $globals["mealType"] !== "pork-meal" ) {
+      doSomethingCool( "chicken" );
+    } else {
+      findANewJob( renly );
+    }
   };
 
-  // Bind document keypress handler
-  $( document ).bind( "keypress", function( e ) { 
-    if( !$scope.inputHasFocus() ) {
-      $scope.buddy.evalKeypress( e.keyCode );
-      e.preventDefault();
-      e.stopPropagation();
-    }
+  // Angular controllers
+  app.controller('main', function($scope) {
 
-    $scope.$apply();
-  });
+    $scope.buddy = buddy = new CodeBuddy( testFunction.toString() );
+    $scope.rawCode = buddy.rawCode;
 
-  // Bind input textarea changes 
-  $( $scope.codeInputArea ).bind( "keyup paste", function( e ){
+    $scope.codeInputArea = $("textarea.code.input");
 
-    clearTimeout( $scope.inputUpdateHandle );
+    $scope.inputHasFocus = function() { 
+      return document.activeElement === $scope.codeInputArea[0];
+    };
 
-    // Remove focus on esc keypress
-    if( e.type == "keyup" && e.keyCode == 27 ) {
-      blurAll();
-    } else {
-      buddy.update( $scope.rawCode );
-    }
-
-    if( e.type != "paste" ) {
-      e.preventDefault();
-    }
-
-    e.stopPropagation();
-
-    $scope.$apply();
-  });
-
-  // Handle tabs
-  $("body").on( "keydown", function(e) {
-    if(e.keyCode == 9 ) { 
-      e.preventDefault(); 
-      if( $scope.buddy.inputHasFocus() ) {
-        console.log( "Should tab input line" );
-      } else {
-        $scope.buddy.evalKeypress( 32 );
-        $scope.buddy.evalKeypress( 32 );
+    // Bind document keypress handler
+    $( document ).bind( "keypress", function( e ) { 
+      if( !$scope.inputHasFocus() ) {
+        $scope.buddy.evalKeypress( e.keyCode );
+        e.preventDefault();
+        e.stopPropagation();
       }
-    } 
-    $scope.$apply();
+
+      $scope.$apply();
+    });
+
+    // Bind input textarea changes 
+    $( $scope.codeInputArea ).bind( "keyup paste", function( e ) {
+
+      // Remove focus on esc keypress
+      if( e.type == "keyup" && e.keyCode == 27 ) {
+        blurAll();
+      } else {
+        buddy.update( $scope.rawCode );
+      }
+
+      if( e.type != "paste" ) {
+        e.preventDefault();
+      }
+
+      e.stopPropagation();
+
+      $scope.$apply();
+    });
+
+    // Handle tabs
+    $("body").on( "keydown", function(e) {
+      if(e.keyCode == 9 ) { 
+        e.preventDefault(); 
+        if( $scope.inputHasFocus() ) {
+          console.log( "Should tab input line" );
+        } else {
+          $scope.buddy.evalKeypress( 32 );
+          $scope.buddy.evalKeypress( 32 );
+        }
+      } 
+      $scope.$apply();
+    });
   });
-});
+})();

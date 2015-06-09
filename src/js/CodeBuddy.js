@@ -1,5 +1,5 @@
-CodeBuddy = function( ) {
-  this.rawCode = "";
+CodeBuddy = function( defaultText ) {
+  this.rawCode = defaultText?defaultText:"";
   this.passedCode = "";
   this.codePos = 0;
   this.errorMap = {};
@@ -21,9 +21,9 @@ CodeBuddy.prototype.evalKeypress = function( keyCode ) {
     this.passedCode =  this.passedCode.substr(0,this.passedCode.length-1) + this.rawCode[this.codePos++] + "_";
   } else {
     if( typeof this.errorMap[String.fromCharCode( keyCode )] === "undefined" ) {
-      this.errorMap[String.fromCharCode( keyCode )] = 1;
+      this.errorMap[String.fromCharCode( keyCode )] = { val: String.fromCharCode( keyCode), occ: 1 };
     } else {
-      this.errorMap[String.fromCharCode( keyCode )] += 1;
+      this.errorMap[String.fromCharCode( keyCode )].occ++;
     };
   }
 
