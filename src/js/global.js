@@ -52,7 +52,7 @@ var examples = {
     return $global.beef;
   },
 
-  meal3: function(client,meal) {
+  meal3: function meal3(client,meal) {
     while( this.feedClient( client, meal ) <= 5.0 /* FOOD UNITS */ ) {
       console.log( "Feeding client; current level:", client.foodUnits );
     }
