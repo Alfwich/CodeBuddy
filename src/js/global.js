@@ -73,3 +73,18 @@ var examples = {
     client.eject();
   },
 };
+
+// Returns an array of all own properties for an object
+var objToArray = function( obj ) {
+  var result = [];
+
+  for( var p in obj ) {
+    result.push( obj[p] );
+  }
+
+  return result;
+}
+
+
+
+

@@ -4,7 +4,18 @@ var CodeBuddy = function( defaultText ) {
   this.inErrorState = false;
   this.codePos = 0;
   this.maps = {};
-  this.clearMaps();
+  this.delayErrorTimeout = null;
+
+  if( localStorage ) {
+    var cachedMap = localStorage.getItem( "CodeBuddy.errorMap" );
+    if( cachedMap ) {
+      this.maps = JSON.parse( cachedMap );
+      // Remove Angular ID fields from the saved error entries
+      for( var k in this.maps ) {
+        delete this.maps[k]["$$hashKey"];
+      }
+    }
+  }
 
   if( defaultText ) {
     this.update( defaultText );
@@ -12,10 +23,6 @@ var CodeBuddy = function( defaultText ) {
 };
 
 CodeBuddy.prototype.leader = "_";
-
-CodeBuddy.prototype.clearMaps = function() {
-  this.maps = {};
-}
 
 CodeBuddy.prototype.update = function( text ) {
   this.rawCode = this.formatText( text );
@@ -43,24 +50,50 @@ CodeBuddy.prototype.processKeypress = function( keyCode ) {
     // Add the correct char to the end of the passedCode string with the static leader
     this.processChar( this.rawCode[this.codePos++] );
     result = true;
+
+    // Delay error
+    clearInterval( this.delayErrorTimeout );
+
+    // Set a delay error timeout if we are not at the end of the input
+    if( !this.isComplete() ) {
+      this.delayErrorTimeout = setInterval( function() {
+         acquire( this.maps, this.rawCode[ this.codePos ], { 
+          val: this.rawCode[this.codePos], 
+          type: "delay",
+          occ: 0
+        }).occ++;     
+      }.bind(this), 500 );
+    }
+
   } else {
 
     // Record the error stroke and that an error transition occured
-    acquire( this.maps, this.rawCode[ this.codePos ], { 
-      val: this.rawCode[this.codePos], 
-      type: "key",
-      occ: 0
-    }).occ++;
-
-    if( this.codePos && this.rawCode[this.codePos] != " " && this.rawCode[this.codePos+1] != " " ) {
-      acquire( this.maps, this.rawCode[this.codePos]+this.rawCode[this.codePos+1], {
-        lhs: this.rawCode[this.codePos],
-        rhs: this.rawCode[this.codePos+1],
-        val: this.rawCode[this.codePos] + this.rawCode[this.codePos+1],
-        type: "transition",
+    if( this.rawCode[this.codePos] != " " ) {
+      acquire( this.maps, this.rawCode[ this.codePos ], { 
+        val: this.rawCode[this.codePos], 
+        type: "key",
         occ: 0
       }).occ++;
     }
+
+    if( this.codePos && typeof this.rawCode[this.codePos] !== "undefined" && typeof this.rawCode[this.codePos+1] !== "undefined" && this.rawCode[this.codePos] != " " && this.rawCode[this.codePos+1] != " " ) {
+      var transition = acquire( this.maps, this.rawCode[this.codePos]+this.rawCode[this.codePos+1], {
+        val: this.rawCode[this.codePos] + this.rawCode[this.codePos+1],
+        type: "transition",
+        occ: 0
+      });
+
+      // Add a block error if the transition has occurance greater than 5
+      if( ++transition.occ > 5 && this.codePos >= 2) {
+        acquire( this.maps, this.rawCode.substr( this.codePos-2, 5 ), {
+          val: this.rawCode.substr( this.codePos-2, 5 ),
+          type: "block",
+          occ: 0
+        });
+      }
+    }
+
+    localStorage.setItem( "CodeBuddy.errorMap", JSON.stringify( this.maps ) );
   }
 
   return result;
@@ -111,5 +144,6 @@ CodeBuddy.prototype.clear = function() {
 };
 
 CodeBuddy.prototype.clearErrors = function() {
-  this.clearMaps();
+  this.maps = {};
+  localStorage.setItem( "CodeBuddy.errorMap", "{}" );
 };

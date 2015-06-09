@@ -1,5 +1,5 @@
-var RandomGenerator = function( maps, options ) {
-  var result = "",
+var RandomGenerator = function( errors, options ) {
+  var result = [ "" ] ,
       i = 0;
 
   if( !options || typeof options.length !== "number" ) {
@@ -9,15 +9,35 @@ var RandomGenerator = function( maps, options ) {
   };
 
   // Remove empty map objects
-  maps = maps.filter( function(ele){ return Object.keys(ele).length; } );
 
-  if( maps.length ) {
+  if( errors.length ) {
+
+    var totalWeight = errors.reduce( function(a,b){ 
+      // a can either be the first object or the raw value being computed
+      return (typeof a === "object"?a.occ:a) + (b?b.occ:0);
+    });
+
     while( i++ < options.length ) {
-      var randomMap = maps[_.random(0,maps.length-1)];
-      var randomEntry = getRandomProperty( randomMap ); 
-      result += result ? " " + randomEntry.val : randomEntry.val;
+      var randomEntry = _.random(totalWeight),
+          j = -1;
+      while( randomEntry > 0 ) {
+        randomEntry -= errors[++j].occ;
+      }
+
+      result[result.length-1] += errors[j].val;
+
+      // Add spaces randomly
+      if( Math.random() < 0.5 ) {
+        result[result.length-1] += " ";
+      }
+
+      // Add a new line if the line is greater than 45 characters
+      if( result[result.length-1].length > 45 ) {
+        result.push("");
+      }
     }
   }
 
-  return result;
+  // combine the lines into the final text
+  return result.join("\n");
 };

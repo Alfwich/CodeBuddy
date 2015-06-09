@@ -18,7 +18,7 @@
       },
 
       "Generate Test": function() {
-        examples["test"] = RandomGenerator( [ $scope.buddy.maps ] );
+        examples["test"] = RandomGenerator( objToArray( $scope.buddy.maps ) );
         $scope.changeFunction( "test" );
       }
     };
@@ -78,11 +78,6 @@
       } 
       $scope.$apply();
     });
-
-    $scope.errors = function() {
-      result = [1,2,3];
-      return result;
-    }
 
     // Init controller
     $scope.changeFunction( examples.randomKey() );
