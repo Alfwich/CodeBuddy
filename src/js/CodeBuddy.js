@@ -97,3 +97,13 @@ CodeBuddy.prototype.evalKeypress = function( keyCode ) {
   }
 };
 
+
+CodeBuddy.prototype.clear = function() {
+  this.passedCode = "";
+  this.codePos = 0;
+};
+
+CodeBuddy.prototype.clearErrors = function() {
+  this.errorMap = {};
+  this.transitionMap = {};
+};

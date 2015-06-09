@@ -13,12 +13,22 @@ var acquire = function( a, k, d ) {
 };
 
 var examples = {
-  randomKey : function() {
+  randomKey: function() {
     var keys = Object.keys( this );
     return keys[Math.round(Math.random()*(keys.length-1))];
   },
 
-  meal1 : function meal1() {
+  get: function(k) {
+    var result = "";
+
+    if( typeof this[k] !== "undefined" ) {
+      result = this[k].toString();
+    }
+
+    return result;
+  },
+
+  meal1: function meal1() {
     if( $globals["mealType"] !== "pork-meal" ) {
       doSomethingCool( "chicken" );
     } else {
@@ -26,7 +36,7 @@ var examples = {
     }
   },
 
-  meal2 : function meal2() {
+  meal2: function meal2() {
     switch( sideDish ) {
       case "ham":
         console.log( "Oink" );
@@ -40,5 +50,14 @@ var examples = {
     }
 
     return $global.beef;
+  },
+
+  meal3: function(client,meal) {
+    while( this.feedClient( client, meal ) <= 5.0 /* FOOD UNITS */ ) {
+      console.log( "Feeding client; current level:", client.foodUnits );
+    }
+
+    client.requestPayment();
+    client.eject();
   },
 };

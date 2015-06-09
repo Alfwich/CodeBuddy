@@ -31,7 +31,25 @@
   <body>
     <div class="row">
       <div ng-app="codeBuddy" ng-controller="main" id="main" >
-        <div class="col-md-2"></div>
+        <div class="col-md-2">
+          <table class="table">
+            <thead>
+              <th>Load Function</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="k in examples">
+                <td class="function-button btn btn-default" ng-click="changeFunction(k)" ng-class="{ active: currentFunction==k}"> {{k}} </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table">
+            <tbody>
+              <tr ng-repeat="(k,v) in actions">
+                <td class="btn btn-default" ng-click="actions[k]()"> {{k}} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <div class="col-md-10">
           <textarea class="code input" ng-model="rawCode" ></textarea>
           <div class="code container" ng-class="{ error: buddy.inErrorState, complete: buddy.isComplete() }">

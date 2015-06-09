@@ -2,11 +2,34 @@
   // Angular controllers
   app.controller('main', function($scope) {
 
-    $scope.currentFunction = examples.randomKey();
-    $scope.buddy = buddy = new CodeBuddy( examples[$scope.currentFunction].toString() );
-    $scope.rawCode = buddy.rawCode;
-
+    $scope.buddy = null;
+    $scope.currentFunction = null;
+    $scope.rawCode = "";
+    $scope.examples = Object.keys( examples );
     $scope.codeInputArea = $("textarea.code.input");
+
+    $scope.actions = {
+      "Clear Errors": function() {
+        $scope.buddy.clearErrors();
+      },
+
+      "Reset": function() {
+        $scope.buddy.clear();
+      },
+
+      "Generate Test": function() {
+        examples["test"] = "Some generated test";
+        $scope.changeFunction( "test" );
+      }
+    };
+
+    $scope.changeFunction = function(k) {
+      if( examples.get(k) != "" ) {
+        $scope.currentFunction = k;
+        $scope.buddy = buddy = new CodeBuddy( examples.get($scope.currentFunction) );
+        $scope.rawCode = buddy.rawCode;
+      }
+    }
 
     $scope.inputHasFocus = function() { 
       return document.activeElement === $scope.codeInputArea[0];
@@ -55,5 +78,8 @@
       } 
       $scope.$apply();
     });
+
+    // Init controller
+    $scope.changeFunction( examples.randomKey() );
   });
 })();
