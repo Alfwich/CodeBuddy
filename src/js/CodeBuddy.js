@@ -7,14 +7,7 @@ var CodeBuddy = function( defaultText ) {
   this.delayErrorTimeout = null;
 
   if( localStorage ) {
-    var cachedMap = localStorage.getItem( "CodeBuddy.errorMap" );
-    if( cachedMap ) {
-      this.maps = JSON.parse( cachedMap );
-      // Remove Angular ID fields from the saved error entries
-      for( var k in this.maps ) {
-        delete this.maps[k]["$$hashKey"];
-      }
-    }
+    this.loadState( localStorage );
   }
 
   if( defaultText ) {
@@ -52,17 +45,17 @@ CodeBuddy.prototype.processKeypress = function( keyCode ) {
     result = true;
 
     // Delay error
-    clearInterval( this.delayErrorTimeout );
+    clearTimeout( this.delayErrorTimeout );
 
     // Set a delay error timeout if we are not at the end of the input
     if( !this.isComplete() ) {
-      this.delayErrorTimeout = setInterval( function() {
+      this.delayErrorTimeout = setTimeout( function() {
          acquire( this.maps, this.rawCode[ this.codePos ], { 
           val: this.rawCode[this.codePos], 
           type: "delay",
           occ: 0
         }).occ++;     
-      }.bind(this), 500 );
+      }.bind(this), 1000 );
     }
 
   } else {
@@ -85,18 +78,36 @@ CodeBuddy.prototype.processKeypress = function( keyCode ) {
 
       // Add a block error if the transition has occurance greater than 5
       if( ++transition.occ > 5 && this.codePos >= 2) {
-        acquire( this.maps, this.rawCode.substr( this.codePos-2, 5 ), {
-          val: this.rawCode.substr( this.codePos-2, 5 ),
+        var val = this.rawCode.substr( _.random(this.codePos-2, this.codePos), _.random(3,7) );
+        acquire( this.maps, val, {
+          val: val,
           type: "block",
           occ: 0
         });
       }
     }
 
-    localStorage.setItem( "CodeBuddy.errorMap", JSON.stringify( this.maps ) );
+    this.saveState();
   }
 
   return result;
+}
+
+CodeBuddy.prototype.saveState = function(){
+  localStorage.setItem( "CodeBuddy.errorMap", JSON.stringify( this.maps ) );
+}
+
+CodeBuddy.prototype.loadState = function(storage) {
+    var cachedMap = storage.getItem( "CodeBuddy.errorMap" );
+    if( cachedMap ) {
+      this.maps = JSON.parse( cachedMap );
+
+      // Remove Angular ID fields from the saved error entries
+      for( var k in this.maps ) {
+        delete this.maps[k]["$$hashKey"];
+      }
+    }
+
 }
 
 CodeBuddy.prototype.keyCodeTransform = function( keyCode ) {
@@ -145,5 +156,10 @@ CodeBuddy.prototype.clear = function() {
 
 CodeBuddy.prototype.clearErrors = function() {
   this.maps = {};
-  localStorage.setItem( "CodeBuddy.errorMap", "{}" );
+  this.saveState();
 };
+
+CodeBuddy.prototype.removeError = function(error) {
+  delete this.maps[error.val];
+  this.saveState();
+}

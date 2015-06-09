@@ -20,8 +20,10 @@ var RandomGenerator = function( errors, options ) {
     while( i++ < options.length ) {
       var randomEntry = _.random(totalWeight),
           j = -1;
-      while( randomEntry > 0 ) {
+
+      while( randomEntry > 0 || j < 0 ) {
         randomEntry -= errors[++j].occ;
+        if( typeof errors[j] === "undefined" ) { j = 0; }
       }
 
       result[result.length-1] += errors[j].val;
@@ -32,7 +34,7 @@ var RandomGenerator = function( errors, options ) {
       }
 
       // Add a new line if the line is greater than 45 characters
-      if( result[result.length-1].length > 45 ) {
+      if( result[result.length-1].length > 65 ) {
         result.push("");
       }
     }

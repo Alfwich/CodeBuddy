@@ -35,6 +35,10 @@
       return document.activeElement === $scope.codeInputArea[0];
     };
 
+    $scope.removeError = function( error ) {
+      $scope.buddy.removeError( error );
+    }
+
     // Bind document keypress handler
     $( document ).bind( "keypress", function( e ) { 
       if( !$scope.inputHasFocus() ) {

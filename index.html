@@ -68,12 +68,14 @@
                 <th> Key Value </th>
                 <th> Type </th>
                 <th> Errors </th>
+                <th> Actions </th>
               </thead>
               <tbody>
                 <tr ng-repeat="k in buddy.maps | toArray | orderBy: '-occ'">
                   <td> {{k.val}} </td>
                   <td> {{k.type}}</td>
                   <td> {{k.occ}} </td>
+                  <td> <button class="btn btn-danger" ng-click="removeError( { val : k.val, occ: k.occ } )">Remove</button>
                 </tr>
               </tbody>
             </table>
