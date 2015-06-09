@@ -1,4 +1,4 @@
-CodeBuddy = function( defaultText ) {
+var CodeBuddy = function( defaultText ) {
   this.rawCode = "";
   this.passedCode = "";
   this.inErrorState = false;
@@ -50,6 +50,7 @@ CodeBuddy.prototype.processKeypress = function( keyCode ) {
       acquire( this.transitionMap, this.rawCode[this.codePos-1]+this.rawCode[this.codePos], {
         lhs: this.rawCode[this.codePos-1],
         rhs: this.rawCode[this.codePos],
+        val: this.rawCode[this.codePos-1] + this.rawCode[this.codePos],
         occ: 0
       }).occ++;
     }

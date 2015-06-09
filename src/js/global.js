@@ -15,7 +15,7 @@ var acquire = function( a, k, d ) {
 var examples = {
   randomKey: function() {
     var keys = Object.keys( this );
-    return keys[Math.round(Math.random()*(keys.length-1))];
+    return keys[_.random(0,keys.length-1)];
   },
 
   get: function(k) {

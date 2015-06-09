@@ -18,7 +18,7 @@
       },
 
       "Generate Test": function() {
-        examples["test"] = "Some generated test";
+        examples["test"] = RandomGenerator( [ $scope.buddy.errorMap, $scope.buddy.transitionMap ] );
         $scope.changeFunction( "test" );
       }
     };
