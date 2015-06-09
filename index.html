@@ -70,14 +70,9 @@
                 <th> Errors </th>
               </thead>
               <tbody>
-                <tr ng-repeat="k in buddy.errorMap | toArray | orderBy: '-occ'">
+                <tr ng-repeat="k in buddy.maps | toArray | orderBy: '-occ'">
                   <td> {{k.val}} </td>
-                  <td> Key </td>
-                  <td> {{k.occ}} </td>
-                </tr>
-                <tr ng-repeat="k in buddy.transitionMap | toArray | orderBy: '-occ'">
-                  <td> {{k.lhs}} => {{k.rhs}} </td>
-                  <td> Transition </td>
+                  <td> {{k.type}}</td>
                   <td> {{k.occ}} </td>
                 </tr>
               </tbody>

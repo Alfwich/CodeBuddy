@@ -12,6 +12,18 @@ var acquire = function( a, k, d ) {
   return result;
 };
 
+// Returns a random own property from an object
+var getRandomProperty = function( o ) {
+  var result = "",
+      properties = Object.keys( o );
+
+  if( properties.length ) {
+    result = properties[_.random(0,properties.length-1)]
+  }
+  
+  return o[result];
+}
+
 var examples = {
   randomKey: function() {
     var keys = Object.keys( this );

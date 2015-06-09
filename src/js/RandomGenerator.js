@@ -8,11 +8,15 @@ var RandomGenerator = function( maps, options ) {
     };
   };
 
-  console.log( maps );
+  // Remove empty map objects
+  maps = maps.filter( function(ele){ return Object.keys(ele).length; } );
 
-  while( i++ < options.length ) {
-    var randomMap = maps[_.random(0,maps.length-1)];
-    console.log( randomMap );
+  if( maps.length ) {
+    while( i++ < options.length ) {
+      var randomMap = maps[_.random(0,maps.length-1)];
+      var randomEntry = getRandomProperty( randomMap ); 
+      result += result ? " " + randomEntry.val : randomEntry.val;
+    }
   }
 
   return result;

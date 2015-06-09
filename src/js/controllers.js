@@ -2,7 +2,7 @@
   // Angular controllers
   app.controller('main', function($scope) {
 
-    $scope.buddy = null;
+    $scope.buddy = buddy = new CodeBuddy();
     $scope.currentFunction = null;
     $scope.rawCode = "";
     $scope.examples = Object.keys( examples );
@@ -18,7 +18,7 @@
       },
 
       "Generate Test": function() {
-        examples["test"] = RandomGenerator( [ $scope.buddy.errorMap, $scope.buddy.transitionMap ] );
+        examples["test"] = RandomGenerator( [ $scope.buddy.maps ] );
         $scope.changeFunction( "test" );
       }
     };
@@ -26,7 +26,7 @@
     $scope.changeFunction = function(k) {
       if( examples.get(k) != "" ) {
         $scope.currentFunction = k;
-        $scope.buddy = buddy = new CodeBuddy( examples.get($scope.currentFunction) );
+        $scope.buddy.update( examples.get( $scope.currentFunction ) );
         $scope.rawCode = buddy.rawCode;
       }
     }
@@ -78,6 +78,11 @@
       } 
       $scope.$apply();
     });
+
+    $scope.errors = function() {
+      result = [1,2,3];
+      return result;
+    }
 
     // Init controller
     $scope.changeFunction( examples.randomKey() );

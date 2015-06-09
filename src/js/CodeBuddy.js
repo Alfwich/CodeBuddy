@@ -3,8 +3,8 @@ var CodeBuddy = function( defaultText ) {
   this.passedCode = "";
   this.inErrorState = false;
   this.codePos = 0;
-  this.errorMap = {};
-  this.transitionMap = {};
+  this.maps = {};
+  this.clearMaps();
 
   if( defaultText ) {
     this.update( defaultText );
@@ -12,6 +12,10 @@ var CodeBuddy = function( defaultText ) {
 };
 
 CodeBuddy.prototype.leader = "_";
+
+CodeBuddy.prototype.clearMaps = function() {
+  this.maps = {};
+}
 
 CodeBuddy.prototype.update = function( text ) {
   this.rawCode = this.formatText( text );
@@ -40,17 +44,20 @@ CodeBuddy.prototype.processKeypress = function( keyCode ) {
     this.processChar( this.rawCode[this.codePos++] );
     result = true;
   } else {
+
     // Record the error stroke and that an error transition occured
-    acquire( this.errorMap, String.fromCharCode( keyCode ), { 
-      val: String.fromCharCode( keyCode ), 
+    acquire( this.maps, this.rawCode[ this.codePos ], { 
+      val: this.rawCode[this.codePos], 
+      type: "key",
       occ: 0
     }).occ++;
 
-    if( this.codePos ) {
-      acquire( this.transitionMap, this.rawCode[this.codePos-1]+this.rawCode[this.codePos], {
-        lhs: this.rawCode[this.codePos-1],
-        rhs: this.rawCode[this.codePos],
-        val: this.rawCode[this.codePos-1] + this.rawCode[this.codePos],
+    if( this.codePos && this.rawCode[this.codePos] != " " && this.rawCode[this.codePos+1] != " " ) {
+      acquire( this.maps, this.rawCode[this.codePos]+this.rawCode[this.codePos+1], {
+        lhs: this.rawCode[this.codePos],
+        rhs: this.rawCode[this.codePos+1],
+        val: this.rawCode[this.codePos] + this.rawCode[this.codePos+1],
+        type: "transition",
         occ: 0
       }).occ++;
     }
@@ -98,13 +105,11 @@ CodeBuddy.prototype.evalKeypress = function( keyCode ) {
   }
 };
 
-
 CodeBuddy.prototype.clear = function() {
   this.passedCode = "";
   this.codePos = 0;
 };
 
 CodeBuddy.prototype.clearErrors = function() {
-  this.errorMap = {};
-  this.transitionMap = {};
+  this.clearMaps();
 };
