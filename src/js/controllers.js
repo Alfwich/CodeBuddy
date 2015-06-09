@@ -7,6 +7,8 @@
     $scope.rawCode = "";
     $scope.examples = Object.keys( examples );
     $scope.codeInputArea = $("textarea.code.input");
+    $scope.rawCodeArea = $("textarea.code.text");
+    $scope.overlayCodeArea = $("textarea.code.overlay");
 
     $scope.actions = {
       "Clear Errors": function() {
@@ -15,6 +17,8 @@
 
       "Reset": function() {
         $scope.buddy.clear();
+        $scope.rawCodeArea[0].scrollTop = 0;
+        $scope.overlayCodeArea.css( { "top" : "0px" } );
       },
 
       "Generate Test": function() {
@@ -28,6 +32,7 @@
         $scope.currentFunction = k;
         $scope.buddy.update( examples.get( $scope.currentFunction ) );
         $scope.rawCode = buddy.rawCode;
+        $scope.rawCodeArea[0].scrollTop = 0;
       }
     }
 
@@ -46,6 +51,18 @@
         e.preventDefault();
         e.stopPropagation();
       }
+
+      // TODO: Refactor this logic
+      if( !$scope.inErrorState && ( e.keyCode == 13 || e.keyCode == 10 ) ) {
+        var delta = Number.parseInt( $scope.rawCodeArea.css("font-size") ),
+            expected = $scope.rawCodeArea[0].scrollTop+delta,
+            actual = 0;
+        $scope.rawCodeArea[0].scrollTop += delta;
+
+        actual = delta - (expected - $scope.rawCodeArea[0].scrollTop );
+        var topPos = Number.parseInt( $scope.overlayCodeArea.css("top") );
+        $scope.overlayCodeArea.css( { "top" : String( topPos-actual )+"px" } );
+      };
 
       $scope.$apply();
     });
@@ -67,6 +84,10 @@
       e.stopPropagation();
 
       $scope.$apply();
+    });
+
+    $($scope.rawCodeArea).on( "changed", function(e) {
+      console.log( $scope.rawCodeArea[0].scrollHeight );
     });
 
     // Handle tabs

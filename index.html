@@ -56,14 +56,14 @@
             </tbody>
           </table>
         </div>
-        <div class="col-md-10">
+        <div class="root col-md-10">
           <textarea class="code input" ng-model="rawCode" ></textarea>
-          <div class="code container" ng-class="{ error: buddy.inErrorState, complete: buddy.isComplete() }">
+          <div class="code root container" ng-class="{ error: buddy.inErrorState, complete: buddy.isComplete() }">
             <textarea class="code text" ng-model="buddy.rawCode"  disabled></textarea>
             <textarea class="code overlay" ng-model="buddy.passedCode" disabled></textarea>
           </div>
-          <div id="errorMap">
-            <table class="table">
+          <div class="root" id="errorMap">
+            <table class="table error-table">
               <thead>
                 <th> Key Value </th>
                 <th> Type </th>

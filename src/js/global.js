@@ -72,6 +72,21 @@ var examples = {
     client.requestPayment();
     client.eject();
   },
+
+  vTest: function vTest(){
+  /*
+      1
+      2
+      3
+      4
+      5
+      6
+      7
+      8
+      9
+      10
+  */
+  }
 };
 
 // Returns an array of all own properties for an object
