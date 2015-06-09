@@ -1,16 +1,9 @@
 (function() {
-  function testFunction() {
-    if( $globals["mealType"] !== "pork-meal" ) {
-      doSomethingCool( "chicken" );
-    } else {
-      findANewJob( renly );
-    }
-  };
-
   // Angular controllers
   app.controller('main', function($scope) {
 
-    $scope.buddy = buddy = new CodeBuddy( testFunction.toString() );
+    $scope.currentFunction = examples.randomKey();
+    $scope.buddy = buddy = new CodeBuddy( examples[$scope.currentFunction].toString() );
     $scope.rawCode = buddy.rawCode;
 
     $scope.codeInputArea = $("textarea.code.input");
