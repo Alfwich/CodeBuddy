@@ -30,12 +30,12 @@
   </head>
   <body>
     <div class="row">
-      <div ng-app="codeBuddy" ng-controller="main" id="main" class="">
+      <div ng-app="codeBuddy" ng-controller="main" id="main" >
         <div class="col-md-3"></div>
         <div class="col-md-9">
           <textarea class="code input" ng-model="rawCode" ></textarea>
-          <div class="code container">
-            <textarea class="code text" ng-model="buddy.rawCode" disabled></textarea>
+          <div class="code container" ng-class="{ error: buddy.inErrorState, complete: buddy.isComplete() }">
+            <textarea class="code text" ng-model="buddy.rawCode"  disabled></textarea>
             <textarea class="code overlay" ng-model="buddy.passedCode" disabled></textarea>
           </div>
           <div id="errorMap">
@@ -47,6 +47,10 @@
               <tbody>
                 <tr ng-repeat="k in buddy.errorMap | toArray | orderBy: '-occ'">
                   <td> {{k.val}} </td>
+                  <td> {{k.occ}} </td>
+                </tr>
+                <tr ng-repeat="k in buddy.transitionMap | toArray | orderBy: '-occ'">
+                  <td> {{k.lhs}} => {{k.rhs}} </td>
                   <td> {{k.occ}} </td>
                 </tr>
               </tbody>

@@ -14,6 +14,9 @@
 
 .code.container {
   position: relative;
+  border: 2px solid;
+  -webkit-transition: border-color 0.25s;
+  transition: border-color 0.25s;
 }
 
 .code.input {
@@ -23,6 +26,7 @@
   position: absolute;
   top:0px;
   left:0px;
+  border: 0;
 }
 
 .code.overlay {
@@ -30,4 +34,13 @@
   top:0px;
   left:0px;
   color: #0f0;
+  border: 0;
+}
+
+.container.complete {
+  border-color: #0F0;
+}
+
+.container.error {
+  border-color: #F00;
 }
