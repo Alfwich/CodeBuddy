@@ -65,7 +65,7 @@ var examples = {
   },
 
   meal3: function meal3(client,meal) {
-    while( this.feedClient( client, meal ) <= 5.0 /* FOOD UNITS */ ) {
+    while( this.feedClient( client, meal ) <= 5.0 ) {
       console.log( "Feeding client; current level:", client.foodUnits );
     }
 
@@ -73,19 +73,54 @@ var examples = {
     client.eject();
   },
 
-  vTest: function vTest(){
-  /*
-      1
-      2
-      3
-      4
-      5
-      6
-      7
-      8
-      9
-      10
-  */
+  gameLoop: function GameLoop() {
+  	this.frame = this.frame.bind(this);
+  	this.lastTime = 0;
+    this.seconds = 0.2;
+  	this.callback = function() {};
+  },
+  cacheType: function() {
+    CacheSimulator.prototype.cacheType = function() {
+      var cacheSimulator = this,
+          result = 0;
+    
+      if( cacheSimulator.cacheSize == 1 ) {
+        result = 2;
+    
+      } else if( cacheSimulator.setSize == cacheSimulator.cacheSize ) {
+        result = 1;
+    
+      } else if( cacheSimulator.setSize != 1 ) {
+        result = 0;
+    
+      } else {
+        result = 2;
+      }
+    
+      return result;
+    }
+  },
+  
+  objects : function(){
+    var result = {
+      tag : "",
+      offset : 0,
+      bitsForOffset : bitsForBlock,
+      set : 0,
+      bitsForSet : bitsForSet,
+      raw : binAddress
+    },
+    tester = {
+      favoriteColor: "Red",
+      generalInterest: "Motorcycles",
+      jackOfAllTrades: true,
+      masterOfNone: true
+    },
+    fruits = {
+      orange: { like: false, color: "orange" },
+      apple:  { like: true, color: "red" },
+      grapes: { like: true, color: "purple/green" }
+    };
   }
 };
 
