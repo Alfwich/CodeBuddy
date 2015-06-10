@@ -4,11 +4,9 @@ var RandomGenerator = function( errors, options ) {
 
   if( !options || typeof options.length !== "number" ) {
     options = {
-      length: 50
+      length: 20
     };
   };
-
-  // Remove empty map objects
 
   if( errors.length ) {
 
@@ -41,5 +39,5 @@ var RandomGenerator = function( errors, options ) {
   }
 
   // combine the lines into the final text
-  return result.join("\n");
+  return result.map(function(ele){ return ele.trim(); } ).join("\n");
 };

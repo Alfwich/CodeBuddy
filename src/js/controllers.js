@@ -20,6 +20,8 @@
         $scope.buddy.clear();
         $scope.rawCodeArea[0].scrollTop = 0;
         $scope.overlayCodeArea.css( { "top" : "0px" } );
+        clearTimeout( $scope.loadingHandle );
+        $scope.loadingHandle = null;
       },
 
       "Generate Test": function() {
@@ -71,11 +73,16 @@
 
         // Check to see if the exercise is complete
         if( $scope.buddy.isComplete() ) {
-          console.log( "Set transition to next typing exercise" );
           // Transition to next typing exercise
           $scope.loadingHandle = setTimeout( function() {
             $scope.loadingHandle = null;
-            $scope.changeFunction( examples.randomKey() );
+            if( $scope.currentFunction == "test" ) {
+              examples["test"] = RandomGenerator( objToArray( $scope.buddy.maps ) );
+              $scope.changeFunction( "test" );
+            } else {
+              $scope.changeFunction( examples.randomKey() );
+            }
+            
             $scope.$apply();
           }, 3000);
         }
