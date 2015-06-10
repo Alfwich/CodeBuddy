@@ -5,11 +5,14 @@
     $scope.buddy = buddy = new CodeBuddy();
     $scope.currentFunction = null;
     $scope.loadingHandle = null;
+    $scope.timerHandle = null;
     $scope.rawCode = "";
     $scope.examples = Object.keys( examples );
     $scope.codeInputArea = $("textarea.code.input");
     $scope.rawCodeArea = $("textarea.code.text");
     $scope.overlayCodeArea = $("textarea.code.overlay");
+    $scope.startTime = new Date();
+    $scope.keypressTime = new Date();
 
     $scope.actions = {
       "Clear Errors": function() {
@@ -17,27 +20,35 @@
       },
 
       "Reset": function() {
-        $scope.buddy.clear();
-        $scope.rawCodeArea[0].scrollTop = 0;
-        $scope.overlayCodeArea.css( { "top" : "0px" } );
-        clearTimeout( $scope.loadingHandle );
-        $scope.loadingHandle = null;
+        $scope.reset();
       },
 
       "Generate Test": function() {
-        examples["test"] = RandomGenerator( objToArray( $scope.buddy.maps ) );
-        $scope.changeFunction( "test" );
+        $scope.changeFunction( RandomGenerator( objToArray( $scope.buddy.errors ) ) );
       }
     };
 
-    $scope.changeFunction = function(k) {
-      if( examples.get(k) != "" ) {
-        $scope.currentFunction = k;
-        $scope.buddy.update( examples.get( $scope.currentFunction ) );
-        $scope.rawCode = buddy.rawCode;
-        $scope.rawCodeArea[0].scrollTop = 0;
-        $scope.overlayCodeArea.css( { "top" : "0px" } );
+    $scope.reset = function() {
+      $scope.buddy.clear();
+      $scope.rawCodeArea[0].scrollTop = 0;
+      $scope.overlayCodeArea.css( { "top" : "0px" } );
+      clearTimeout( $scope.loadingHandle );
+      $scope.loadingHandle = null;
+      $scope.startTime = new Date();
+      $scope.keypressTime = new Date();
+    }
+
+    $scope.changeFunction = function(text) {
+      if( examples.get(text) != "" ) {
+        $scope.currentFunction = text;
+        text = examples.get(text); 
+      } else {
+        $scope.currentFunction = "test";
       }
+
+      $scope.buddy.update( text );
+      $scope.rawCode = buddy.rawCode;
+      $scope.reset();
     }
 
     $scope.inputHasFocus = function() { 
@@ -62,7 +73,9 @@
     // Bind document keypress handler
     $( document ).bind( "keypress", function( e ) { 
       if( !$scope.inputHasFocus() ) {
-        $scope.buddy.evalKeypress( e.keyCode );
+        if( $scope.buddy.evalKeypress( e.keyCode ) ){
+          $scope.keypressTime = new Date();
+        }
         e.preventDefault();
         e.stopPropagation();
 
@@ -73,16 +86,18 @@
 
         // Check to see if the exercise is complete
         if( $scope.buddy.isComplete() ) {
+
           // Transition to next typing exercise
           $scope.loadingHandle = setTimeout( function() {
             $scope.loadingHandle = null;
             if( $scope.currentFunction == "test" ) {
-              examples["test"] = RandomGenerator( objToArray( $scope.buddy.maps ) );
-              $scope.changeFunction( "test" );
-            } else {
+              $scope.changeFunction( RandomGenerator( objToArray( $scope.buddy.errors) ) );
+            } else if( $scope.currentFunction !== null ) {
               $scope.changeFunction( examples.randomKey() );
+            } else {
+              $scope.reset();
             }
-            
+
             $scope.$apply();
           }, 3000);
         }
@@ -99,6 +114,7 @@
         blurAll();
       } else {
         buddy.update( $scope.rawCode );
+        $scope.currentFunction = null;
       }
 
       if( e.type != "paste" ) {
@@ -107,6 +123,7 @@
 
       e.stopPropagation();
 
+      $scope.reset();
       $scope.$apply();
     });
 
@@ -123,6 +140,16 @@
       } 
       $scope.$apply();
     });
+
+    // Manually update the timers. We use jQuery and an interval because we want angular to be able to do its own thing
+    // while this is updating very frequently
+    $scope.timerHandle = setInterval( function(){
+      var cur = new Date();
+      if( !$scope.buddy.isComplete() ) {
+        $("#currentTime").text( String( +cur.getTime() - +$scope.startTime.getTime() ) );
+        $("#keypressTime").text( String( +cur.getTime() - +$scope.keypressTime.getTime() ) );
+      };
+    }, 50 );
 
     // Init controller
     $scope.changeFunction( examples.randomKey() );

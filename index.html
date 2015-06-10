@@ -62,6 +62,14 @@
             <textarea class="code text" ng-model="buddy.rawCode"  disabled></textarea>
             <textarea class="code overlay" ng-model="buddy.passedCode" disabled></textarea>
             <div id="loading-bar" ng-class="{ loading: loadingHandle } "></div>
+            <table>
+              <tbody id="timerBar">
+                <tr>
+                  <td id="currentTime"></td>
+                  <td id="keypressTime"></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
           <div class="root" id="errorMap">
             <table class="table error-table">
@@ -72,7 +80,7 @@
                 <th> Actions </th>
               </thead>
               <tbody>
-                <tr ng-repeat="k in buddy.maps | toArray | orderBy: '-occ'">
+                <tr ng-repeat="k in buddy.errors | toArray | orderBy: '-occ'">
                   <td> {{k.val}} </td>
                   <td> {{k.type}}</td>
                   <td> {{k.occ}} </td>

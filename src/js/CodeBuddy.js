@@ -3,7 +3,7 @@ var CodeBuddy = function( defaultText ) {
   this.passedCode = "";
   this.inErrorState = false;
   this.codePos = 0;
-  this.maps = {};
+  this.errors = {};
   this.delayErrorTimeout = null;
   this.storageObject = localStorage;
   this.loadState();
@@ -58,14 +58,15 @@ CodeBuddy.prototype.markError = function(type) {
       break;
 
     case "block":
-      val = this.rawCode.substr( _.random(this.codePos-2, this.codePos), _.random(3,7) );
+      val = this.rawCode.substr( this.codePos-1, 5 );
       break;
 
          
   };
 
   if( val ) {
-    result = acquire( this.maps, val, this.generateError( type, val ) ).occ++;
+    result = acquire( this.errors, val, this.generateError( type, val ) );
+    result.occ++;
   }
 
   return result;
@@ -117,7 +118,7 @@ CodeBuddy.prototype.processKeypress = function( keyCode ) {
 
 CodeBuddy.prototype.saveState = function(){
   if( this.storageObject ) {
-    this.storageObject.setItem( "CodeBuddy.errorMap", JSON.stringify( this.maps ) );
+    this.storageObject.setItem( "CodeBuddy.errorMap", JSON.stringify( this.errors ) );
   } 
 }
 
@@ -125,11 +126,11 @@ CodeBuddy.prototype.loadState = function() {
   if( this.storageObject ) {
     var cachedMap = this.storageObject.getItem( "CodeBuddy.errorMap" );
     if( cachedMap ) {
-      this.maps = JSON.parse( cachedMap );
+      this.errors = JSON.parse( cachedMap );
 
       // Remove Angular ID fields from the saved error entries
-      for( var k in this.maps ) {
-        delete this.maps[k]["$$hashKey"];
+      for( var k in this.errors ) {
+        delete this.errors[k]["$$hashKey"];
       }
     }
   } 
@@ -173,6 +174,8 @@ CodeBuddy.prototype.evalKeypress = function( keyCode ) {
     this.postProcessEval(keyCode);
     
   }
+
+  return !this.inErrorState;
 };
 
 CodeBuddy.prototype.clear = function() {
@@ -181,11 +184,11 @@ CodeBuddy.prototype.clear = function() {
 };
 
 CodeBuddy.prototype.clearErrors = function() {
-  this.maps = {};
+  this.errors = {};
   this.saveState();
 };
 
 CodeBuddy.prototype.removeError = function(error) {
-  delete this.maps[error.val];
+  delete this.errors[error.val];
   this.saveState();
 }
