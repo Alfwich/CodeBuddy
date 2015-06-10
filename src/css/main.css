@@ -17,6 +17,7 @@
 }
 
 .code.container {
+  padding: 0px;
   border: 2px solid;
   margin-top:300px;
   -webkit-transition: border-color 0.25s;
@@ -66,6 +67,18 @@
   z-index:9;
 }
 
+/* Loading Bar */
+#loading-bar {
+  height: 0px;
+  width: 0px;
+  background-color: #0F0;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+  transition: width 3s, height 0.5s;
+  -webkit-transition: width 5s height 0.5s;
+}
 
-
-
+#loading-bar.loading{
+  height: 10px;
+  width: 100%;
+}

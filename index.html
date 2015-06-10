@@ -61,6 +61,7 @@
           <div class="code root container" ng-class="{ error: buddy.inErrorState, complete: buddy.isComplete() }">
             <textarea class="code text" ng-model="buddy.rawCode"  disabled></textarea>
             <textarea class="code overlay" ng-model="buddy.passedCode" disabled></textarea>
+            <div id="loading-bar" ng-class="{ loading: loadingHandle } "></div>
           </div>
           <div class="root" id="errorMap">
             <table class="table error-table">

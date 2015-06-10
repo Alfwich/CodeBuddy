@@ -4,6 +4,7 @@
 
     $scope.buddy = buddy = new CodeBuddy();
     $scope.currentFunction = null;
+    $scope.loadingHandle = null;
     $scope.rawCode = "";
     $scope.examples = Object.keys( examples );
     $scope.codeInputArea = $("textarea.code.input");
@@ -70,10 +71,15 @@
 
         // Check to see if the exercise is complete
         if( $scope.buddy.isComplete() ) {
+          console.log( "Set transition to next typing exercise" );
           // Transition to next typing exercise
+          $scope.loadingHandle = setTimeout( function() {
+            $scope.loadingHandle = null;
+            $scope.changeFunction( examples.randomKey() );
+            $scope.$apply();
+          }, 3000);
         }
       }
-
 
       $scope.$apply();
     });
