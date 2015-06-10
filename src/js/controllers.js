@@ -33,6 +33,7 @@
         $scope.buddy.update( examples.get( $scope.currentFunction ) );
         $scope.rawCode = buddy.rawCode;
         $scope.rawCodeArea[0].scrollTop = 0;
+        $scope.overlayCodeArea.css( { "top" : "0px" } );
       }
     }
 
@@ -44,25 +45,35 @@
       $scope.buddy.removeError( error );
     }
 
+    $scope.scrollOverlay = function() {
+      var delta = Number.parseInt( $scope.rawCodeArea.css("font-size") ),
+          expected = $scope.rawCodeArea[0].scrollTop+delta,
+          actual = 0;
+      $scope.rawCodeArea[0].scrollTop += delta;
+
+      actual = delta - (expected - $scope.rawCodeArea[0].scrollTop );
+      var topPos = Number.parseInt( $scope.overlayCodeArea.css("top") );
+      $scope.overlayCodeArea.css( { "top" : String( topPos-actual )+"px" } );
+    }
+
     // Bind document keypress handler
     $( document ).bind( "keypress", function( e ) { 
       if( !$scope.inputHasFocus() ) {
         $scope.buddy.evalKeypress( e.keyCode );
         e.preventDefault();
         e.stopPropagation();
+
+        // TODO: Refactor this logic
+        if( !$scope.buddy.inErrorState && ( e.keyCode == 13 || e.keyCode == 10 ) ) {
+          $scope.scrollOverlay();
+        };
+
+        // Check to see if the exercise is complete
+        if( $scope.buddy.isComplete() ) {
+          // Transition to next typing exercise
+        }
       }
 
-      // TODO: Refactor this logic
-      if( !$scope.inErrorState && ( e.keyCode == 13 || e.keyCode == 10 ) ) {
-        var delta = Number.parseInt( $scope.rawCodeArea.css("font-size") ),
-            expected = $scope.rawCodeArea[0].scrollTop+delta,
-            actual = 0;
-        $scope.rawCodeArea[0].scrollTop += delta;
-
-        actual = delta - (expected - $scope.rawCodeArea[0].scrollTop );
-        var topPos = Number.parseInt( $scope.overlayCodeArea.css("top") );
-        $scope.overlayCodeArea.css( { "top" : String( topPos-actual )+"px" } );
-      };
 
       $scope.$apply();
     });
@@ -84,10 +95,6 @@
       e.stopPropagation();
 
       $scope.$apply();
-    });
-
-    $($scope.rawCodeArea).on( "changed", function(e) {
-      console.log( $scope.rawCodeArea[0].scrollHeight );
     });
 
     // Handle tabs
