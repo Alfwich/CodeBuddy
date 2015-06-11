@@ -31,7 +31,7 @@ var RandomGenerator = function( errors, options ) {
         result[result.length-1] += " ";
       }
 
-      // Add a new line if the line is greater than 45 characters
+      // Add a new line if the line is greater than 65 characters
       if( result[result.length-1].length > 65 ) {
         result.push("");
       }
