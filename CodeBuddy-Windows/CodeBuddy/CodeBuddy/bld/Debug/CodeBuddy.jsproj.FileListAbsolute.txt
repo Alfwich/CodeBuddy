@@ -1,0 +1,15 @@
+C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bin\Debug\ReverseMap\resources.pri
+C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bin\Debug\AppxManifest.xml
+C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bin\Debug\CodeBuddy.build.appxrecipe
+C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bld\Debug\priconfig.xml
+C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bld\Debug\priconfig.xml.intermediate
+C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bld\Debug\layout.resfiles
+C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bld\Debug\layout.resfiles.intermediate
+C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bld\Debug\resources.resfiles
+C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bld\Debug\resources.resfiles.intermediate
+C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bld\Debug\pri.resfiles
+C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bld\Debug\pri.resfiles.intermediate
+C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bld\Debug\qualifiers.txt
+C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bld\Debug\qualifiers.txt.intermediate
+C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bld\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bld\Debug\ProjectArchitectures.txt

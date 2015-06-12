@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>ARTHUR</Machine>
+    <WindowsUser>ArthurWuterich</WindowsUser>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>59a2ff1f-19df-4046-9e08-3a6361f7a29f</PackageIdentityName>
+    <IntermediateOutputPath>C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bld\Debug\</IntermediateOutputPath>
+    <RegisteredManifestChecksum>3B8135DE6AFC50D91860816078DD06C6760C7918C510A5A841298C14F5721F24</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>59a2ff1f-19df-4046-9e08-3a6361f7a29f_1.0.0.0_neutral__93wjd9wy422hg</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>59a2ff1f-19df-4046-9e08-3a6361f7a29f_93wjd9wy422hg!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>59a2ff1f-19df-4046-9e08-3a6361f7a29f</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=ArthurWuterich</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+    <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-06-11T22:27:03.312</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\default.html">
+      <PackagePath>default.html</PackagePath>
+      <Modified>2015-06-11T23:52:01.526</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\images\logo.scale-100.png">
+      <PackagePath>images\logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-06-03T00:38:24.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\images\smalllogo.scale-100.png">
+      <PackagePath>images\smalllogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-06-03T00:38:24.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\images\splashscreen.scale-100.png">
+      <PackagePath>images\splashscreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-06-03T00:38:24.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\images\storelogo.scale-100.png">
+      <PackagePath>images\storelogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-06-03T00:38:24.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\js\CodeBuddy.js">
+      <PackagePath>js\CodeBuddy.js</PackagePath>
+      <Modified>2015-06-12T00:10:22.424</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\js\default.js">
+      <PackagePath>js\default.js</PackagePath>
+      <Modified>2015-06-12T00:21:46.482</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\js\global.js">
+      <PackagePath>js\global.js</PackagePath>
+      <Modified>2015-06-11T22:27:01.739</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\js\lodash.js">
+      <PackagePath>js\lodash.js</PackagePath>
+      <Modified>2015-06-11T22:22:00.077</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\js\RandomGenerator.js">
+      <PackagePath>js\RandomGenerator.js</PackagePath>
+      <Modified>2015-06-11T17:11:01.263</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\css\default.css">
+      <PackagePath>css\default.css</PackagePath>
+      <Modified>2015-06-11T23:26:37.392</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bin\Debug\ReverseMap\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2015-06-11T22:27:03.187</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.WinJS.2.0\1.0\">
+      <Name>Microsoft.WinJS.2.0</Name>
+      <Version>1.0.9600.17018</Version>
+      <Architecture>Neutral</Architecture>
+      <FrameworkIdentity>Name=Microsoft.WinJS.2.0, MinVersion=1.0.9600.17018</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.WinJS.2.0\1.0\Microsoft.WinJS.2.0.appx</AppxLocation>
+      <MoreInfo>http://go.microsoft.com/fwlink/%3fLinkId=260891</MoreInfo>
+    </ResolvedSDKReference>
+  </ItemGroup>
+</Project>

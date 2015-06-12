@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>ARTHUR</Machine>
+    <WindowsUser>ArthurWuterich</WindowsUser>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>59a2ff1f-19df-4046-9e08-3a6361f7a29f</PackageIdentityName>
+    <IntermediateOutputPath>C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bld\Debug\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\default.html">
+      <PackagePath>default.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\images\logo.scale-100.png">
+      <PackagePath>images\logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\images\smalllogo.scale-100.png">
+      <PackagePath>images\smalllogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\images\splashscreen.scale-100.png">
+      <PackagePath>images\splashscreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\images\storelogo.scale-100.png">
+      <PackagePath>images\storelogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\js\CodeBuddy.js">
+      <PackagePath>js\CodeBuddy.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\js\default.js">
+      <PackagePath>js\default.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\js\global.js">
+      <PackagePath>js\global.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\js\lodash.js">
+      <PackagePath>js\lodash.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\js\RandomGenerator.js">
+      <PackagePath>js\RandomGenerator.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\css\default.css">
+      <PackagePath>css\default.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bin\Debug\ReverseMap\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.WinJS.2.0\1.0\">
+      <Name>Microsoft.WinJS.2.0</Name>
+      <Version>1.0.9600.17018</Version>
+      <Architecture>Neutral</Architecture>
+      <FrameworkIdentity>Name=Microsoft.WinJS.2.0, MinVersion=1.0.9600.17018</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.WinJS.2.0\1.0\Microsoft.WinJS.2.0.appx</AppxLocation>
+      <MoreInfo>http://go.microsoft.com/fwlink/%3fLinkId=260891</MoreInfo>
+    </ResolvedSDKReference>
+  </ItemGroup>
+</Project>
