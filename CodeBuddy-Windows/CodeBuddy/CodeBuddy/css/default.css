@@ -16,52 +16,39 @@
 #leftBar {
     -ms-grid-column: 1;
     -ms-grid-row: 1;
-    background-color: #ff0000;
+    background-color: #6ca1ff;
+    padding-top: 10px;
+    text-align: center;
+}
+
+#leftBar > .win-button {
+    width: 95%;
+    margin-bottom: 10px;
 }
 
 #content {
     -ms-grid-column: 2;
     -ms-grid-row: 1;
+    display: -ms-grid;
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: 320px 1fr;
 }
 
 .root {
     position: relative;
 }
 
-.error-list-item{
-    width: 100%;
-    display: -ms-grid;
-    -ms-grid-columns: 1fr 1fr 1fr;
-    -ms-grid-rows: 1;
-}
 
-.error-list-item .val, .error-list-item .type, .error-list-item .occ {
-    -ms-grid-row: 1;
-    width: 100%;
-}
 
-.error-list-item .val {
+#errors {
     -ms-grid-column: 1;
-}
-
-.error-list-item .type {
-    -ms-grid-column: 2;
-}
-
-.error-list-item .occ {
-    -ms-grid-column: 3;
-}
-
-
-#templates * .template {
-    display: none;
+    -ms-grid-row: 2;
+    padding-left: 5px;
 }
 
 #error-list {
     width: 100%;
     height: 100%;
-    -ms-grid-column: 1;
-    -ms-grid-row: 2;
 }
 
 #code-area {
@@ -71,26 +58,69 @@
     -ms-grid-row: 1;
 }
 
+#code {
+    background-color: #FFF;
+    color: black;
+}
+
 #code, #overlay {
     position: absolute;
-    top: 0px;
+    top: -5px;
     left: 0px;
     font-family: Courier New, Courier, monospace;
     font-size: 30px;
-    width: 100%;
+    width: 97%;
     height: 300px;
-}
-
-#content {
-    display: -ms-grid;
-    -ms-grid-rows: 8fr 4fr;
-    -ms-grid-columns: 1fr;
+    padding: 7px;
+    margin: 5px;
+    border: 3px solid #6ca1ff;
+    font-weight: bold;
 }
 
 #overlay {
     color: #0F0;
 }
 
-.win-button {
+
+.error-list-item, #error-list-header {
     width: 100%;
+    display: -ms-grid;
+    -ms-grid-columns: 1fr 1fr 1fr;
+    -ms-grid-rows: 1;
+}
+
+#error-list-header {
+    -ms-grid-rows: 35px 1fr;
+}
+
+.error-list-item > div, #error-list-header > div {
+    -ms-grid-row: 1;
+    width: 100%;
+}
+
+#error-list-header > div {
+    -ms-grid-row: 2;
+}
+
+#error-list-header .header {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    font-size: 30px;
+}
+
+.error-list-item .val, #error-list-header .val {
+    -ms-grid-column: 1;
+}
+
+.error-list-item .type, #error-list-header .type {
+    -ms-grid-column: 2;
+}
+
+.error-list-item .occ, #error-list-header .occ {
+    -ms-grid-column: 3;
+}
+
+#error-list-header {
+    font-size: 20px;
+    font-weight: bold;
 }

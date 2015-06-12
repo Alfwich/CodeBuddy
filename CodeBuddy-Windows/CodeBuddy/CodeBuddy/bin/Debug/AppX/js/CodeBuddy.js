@@ -115,7 +115,6 @@
                 processKeypress : function (keyCode) {
                     var result = false;
 
-                    console.log(keyCode, this.rawCode.charCodeAt(this.codePos));
                     if (keyCode == this.rawCode.charCodeAt(this.codePos)) {
                         this.processChar(this.rawCode[this.codePos++]);
                         result = true;
@@ -128,15 +127,18 @@
 
                 saveState : function () {
                     if (this.storageObject) {
-                        //this.storageObject.setItem("CodeBuddy.errorMap", JSON.stringify(this.errors));
+                        var save = [];
+                        this.errors.forEach( function( ele ){ save.push( ele ); } );
+                        this.storageObject.setItem("CodeBuddy.errorMap", JSON.stringify( save ));
                     }
                 },
 
                 loadState : function () {
                     if (this.storageObject) {
-                        var cachedMap = this.storageObject.getItem("CodeBuddy.errorMap");
-                        if (cachedMap) {
-                            //this.errors = JSON.parse(cachedMap);
+                        var savedErrors = this.storageObject.getItem("CodeBuddy.errorMap");
+                        if (savedErrors) {
+                            savedErrors = JSON.parse(savedErrors);
+                            savedErrors.forEach(function (ele) { this.errors.push(ele) }.bind(this));
                         }
                     }
                 },

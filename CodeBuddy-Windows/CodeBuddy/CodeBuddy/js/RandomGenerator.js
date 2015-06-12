@@ -22,11 +22,10 @@
                         j = -1;
 
                     while (randomEntry > 0 || j < 0) {
-                        randomEntry -= errors[++j].occ;
-                        if (typeof errors[j] === "undefined") { j = 0; }
+                        randomEntry -= errors.getAt(++j).occ;
                     }
 
-                    result[result.length - 1] += errors[j].val;
+                    result[result.length - 1] += errors.getAt(j).val;
 
                     // Add spaces randomly
                     if (Math.random() < 0.5) {

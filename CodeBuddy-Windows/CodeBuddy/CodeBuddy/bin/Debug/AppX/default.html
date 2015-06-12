@@ -31,19 +31,29 @@
         <div id="leftBar">
             <button class="win-button" data-win-bind="onclick: reset">Reset</button>
             <button class="win-button" data-win-bind="onclick: open">Load File</button>
+            <button class="win-button" data-win-bind="onclick: generate">Generate Test</button>
         </div>
         <div id="content">
             <div id="code-area" class="root">
                 <div id="code" data-win-bind="innerText: code"></div>
                 <div id="overlay" data-win-bind="innerText: overlay"></div>
             </div>
-            <div id="error-list"
-                 data-win-control="WinJS.UI.ListView"
-                 data-win-options="{ 
-                    itemTemplate: select('.error-list-item-template'),
-                    layout: { type: WinJS.UI.ListLayout }
-                 }">
+            <div id="errors">
+                <div id="error-list-header">
+                    <div class="header">Errors</div>
+                    <div class="val">Value</div>
+                    <div class="type">Type</div>
+                    <div class="occ">Occurance</div>
+                </div>
+                <div id="error-list"
+                     data-win-control="WinJS.UI.ListView"
+                     data-win-options="{
+                        itemTemplate: select('.error-list-item-template'),
+                        tapBehavior: 'toggleSelect',
+                        layout: { type: WinJS.UI.ListLayout}
+                     }">
 
+                </div>
             </div>
         </div>
     </div>

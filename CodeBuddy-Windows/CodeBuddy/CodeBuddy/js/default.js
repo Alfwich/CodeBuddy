@@ -41,6 +41,16 @@
                 })
         );
 
+        bindingSource.setProperty("generate", WinJS.Utilities.markSupportedForProcessing(
+                function (e) {
+                    var generatedText = CodeBuddy.Generator.Code(buddy.errors);
+                    buddy.update( generatedText );
+
+                    bindingSource.setProperty("code", buddy.rawCode);
+                    bindingSource.setProperty("overlay", buddy.passedCode);
+                })
+        );
+
         bindingSource.setProperty("open", WinJS.Utilities.markSupportedForProcessing(
                 function (e) {
                     var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
@@ -64,18 +74,18 @@
         // I need to capture 'enter' keypresses with the onkeyup function for some reason. 
         document.onkeyup = function (e) {
             if ( ( e.keyCode == 10 || e.keyCode == 13 ) && buddy.evalKeypress(e.keyCode) ) {
-                bindingSource.setProperty("overlay", buddy.passedCode);
                 e.preventDefault();
             }
 
+            bindingSource.setProperty("overlay", buddy.passedCode);
         }
 
         document.onkeypress = function (e) {
             if (buddy.evalKeypress(e.keyCode)) {
-                bindingSource.setProperty("overlay", buddy.passedCode);
+                e.preventDefault();
             }
 
-            e.preventDefault();
+            bindingSource.setProperty("overlay", buddy.passedCode);
         }
 
     };
