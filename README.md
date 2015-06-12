@@ -8,3 +8,8 @@ The focus of this application is to help programmers improve their typing abilit
 Demo
 ====
 http://arthurwut.com/code/
+
+WinJS Version
+=============
+
+The windows metro native version is under construction.
