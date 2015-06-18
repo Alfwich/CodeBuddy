@@ -182,7 +182,7 @@
 
                     }
 
-                    return !this.inErrorState;
+                    return !this.inErrorState && !this.isComplete();
                 },
 
                 clear : function () {

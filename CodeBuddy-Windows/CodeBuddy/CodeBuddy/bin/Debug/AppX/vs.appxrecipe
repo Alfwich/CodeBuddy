@@ -26,7 +26,7 @@
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\default.html">
       <PackagePath>default.html</PackagePath>
-      <Modified>2015-06-12T21:05:53.021</Modified>
+      <Modified>2015-06-18T22:34:45.413</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\images\logo.scale-100.png">
       <PackagePath>images\logo.scale-100.png</PackagePath>
@@ -50,15 +50,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\js\CodeBuddy.js">
       <PackagePath>js\CodeBuddy.js</PackagePath>
-      <Modified>2015-06-12T17:48:40.091</Modified>
+      <Modified>2015-06-18T22:52:00.018</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\js\default.js">
       <PackagePath>js\default.js</PackagePath>
-      <Modified>2015-06-12T20:36:22.406</Modified>
+      <Modified>2015-06-18T23:19:52.621</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\js\global.js">
       <PackagePath>js\global.js</PackagePath>
-      <Modified>2015-06-11T22:27:01.739</Modified>
+      <Modified>2015-06-18T23:19:39.329</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\js\lodash.js">
       <PackagePath>js\lodash.js</PackagePath>
@@ -70,7 +70,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\css\default.css">
       <PackagePath>css\default.css</PackagePath>
-      <Modified>2015-06-12T21:01:53.990</Modified>
+      <Modified>2015-06-18T23:19:08.792</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ArthurWuterich\Desktop\Projects\CodeBuddy\CodeBuddy-Windows\CodeBuddy\CodeBuddy\bin\Debug\ReverseMap\resources.pri">
       <PackagePath>resources.pri</PackagePath>

@@ -33,10 +33,31 @@
 
         WinJS.Binding.processAll( document.getElementById("content-main"), viewModel);
         var bindingSource = WinJS.Binding.as(viewModel);
+        
+        // Helper functions
+
+        function updateContainerTop(val) {
+            // Scroll the text and overlay up the font-size of the text
+            var codeContainer = document.getElementById("code-container"),
+                currentTop = parseInt(codeContainer.style.top),
+                offset = 27;
+
+            if (!currentTop) {
+                currentTop = 0;
+            }
+
+            if (typeof val == "undefined") {
+                val = (currentTop - offset);
+            }
+
+            codeContainer.style.top = val + "px";
+
+        }
 
         bindingSource.setProperty("reset", WinJS.Utilities.markSupportedForProcessing(
                 function (e) {
                     buddy.clear();
+                    updateContainerTop(0);
                     bindingSource.setProperty("overlay", buddy.passedCode);
                 })
         );
@@ -45,7 +66,7 @@
                 function (e) {
                     var generatedText = CodeBuddy.Generator.Code(buddy.errors);
                     buddy.update( generatedText );
-
+                    updateContainerTop(0);
                     bindingSource.setProperty("code", buddy.rawCode);
                     bindingSource.setProperty("overlay", buddy.passedCode);
                 })
@@ -56,13 +77,14 @@
                     var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
                     openPicker.viewMode = Windows.Storage.Pickers.PickerViewMode.thumbnail;
                     openPicker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.documentsLibrary;
-                    openPicker.fileTypeFilter.replaceAll([".txt", ".js", ".html"]);
+                    openPicker.fileTypeFilter.replaceAll(["*"]);
 
                     openPicker.pickSingleFileAsync().then(function (file) {
                         if (file) {
                             Windows.Storage.FileIO.readLinesAsync(file)
                                 .then(function (lines) {
                                     buddy.update(lines.join("\n"));
+                                    updateContainerTop(0);
                                     bindingSource.setProperty("code", buddy.rawCode);
                                     bindingSource.setProperty("overlay", buddy.passedCode);
                                 })
@@ -74,6 +96,7 @@
         // I need to capture 'enter' keypresses with the onkeyup function for some reason. 
         document.onkeyup = function (e) {
             if ( ( e.keyCode == 10 || e.keyCode == 13 ) && buddy.evalKeypress(e.keyCode) ) {
+                updateContainerTop();
                 e.preventDefault();
             }
 

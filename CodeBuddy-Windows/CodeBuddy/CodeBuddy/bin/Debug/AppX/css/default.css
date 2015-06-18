@@ -52,28 +52,38 @@
 }
 
 #code-area {
-    width: 100%;
+    width: 98%;
+    top 3px;
     height: 100%;
     -ms-grid-column: 1;
     -ms-grid-row: 1;
+    background-color: #FFF;
+    border: 3px solid #6ca1ff;
+    overflow: hidden;
+    margin: auto;
+}
+
+#code-container {
+    top: 0px;
+    transition: top 0.66s;
+    -webkit-transition: top 0.66s;
 }
 
 #code {
-    background-color: #FFF;
     color: black;
 }
 
 #code, #overlay {
+    background-color: transparent;
     position: absolute;
-    top: -5px;
     left: 0px;
+    top: 40px;
     font-family: Courier New, Courier, monospace;
-    font-size: 30px;
+    font-size: 20px;
     width: 97%;
     height: 300px;
     padding: 7px;
     margin: 5px;
-    border: 3px solid #6ca1ff;
     font-weight: bold;
 }
 
